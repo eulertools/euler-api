@@ -1,0 +1,292 @@
+openapi: 3.0.0
+info:
+  version: '1.0.0'
+  title: 'Blockchain API'
+  description: Ethereum standars.
+servers:
+  - url: 'localhost:3000'
+paths:
+  /blocks/{identifier}:
+    get:
+      summary: 'getBlock'
+      description: Returns a block matching the block number or block hash.
+      operationId: getBlockByNumber
+      tags:
+        - blocks
+      parameters:
+        - name: identifier
+          in: path
+          description: Block Number or block hash
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+        - name: logs
+          in: query
+          required: true
+          schema:
+            type: boolean
+        - name: transactions
+          in: query
+          description: The returned block will contain all transactions as objects.
+          required: true
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: An object containing block info.
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/block'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/block'
+        '400':
+          description: Invalid identifier 
+        '404':
+          description: identifier not found    
+  /transactions/{hash}:
+    get:
+      summary: 'Get transaction matching hash number'
+      description: Retrieves transaction information by introducing hash number.
+      operationId: getTransactionByHash
+      tags:
+        - transaction
+      parameters:
+        - name: hash
+          in: path
+          description: Transaction hash
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'An object with transaction information'
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transaction'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transaction'
+        '400':
+          description: Invalid hash
+        '404':
+          description: Hash not found
+  /metrics/latest:
+    get:
+      summary: 'Get metrics'
+      description: Get metrics for a specific blockchain.
+      operationId: getMetrics
+      tags:
+        - metrics
+      parameters:
+        - name: blockchain-id
+          in: header
+          description: The id of the blockchain
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Object containig a blockchain latest metrics'
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/metrics'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/metrics'
+        '400':
+          description: Invalid blockchain-id
+        '404':
+          description: Blockchain-id not found
+components:
+  schemas:
+    block:
+      type: object
+      description: This is an standard ethereum block
+      properties:
+        "number":
+          type: integer
+          format: int64
+          example: 3
+        "hash":
+          type: string
+          example: "0xef95f2f1ed3ca60b048b4bf67cde2195961e0bba6f70bcbea9a2c4e133e34b46"
+        "parentHash":
+          type: string
+          example: "0x2302e1c0b972d00932deb5dab9eb2982f570597d9d42504c05d9c2147eaf9c88"
+        "nonce":
+          type: string
+          example:  "0xfb6e1a62d119228b"
+        "sha3Uncles":
+          type: string
+          example:  "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347"
+        "logsBloom":
+          type: string
+          example: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        "transactionsRoot":
+          type: string
+          example:  "0x3a1b03875115b79539e5bd33fb00d8f7b7cd61929d5a3c574f507b8acf415bee"
+        "stateRoot":
+          type: string
+          example:  "0xf1133199d44695dfa8fd1bcfe424d82854b5cebef75bddd7e40ea94cda515bcb"
+        "miner":
+          type: string
+          example:  "0x8888f1f195afa192cfee860698584c030f4c9db1"
+        "difficulty":
+          type: string
+          example:  "21345678965432"
+        "totalDifficulty":
+          type: string
+          example:  "324567845321"
+        "size":
+          type: integer
+          example:  616
+        "extraData":
+          type: string
+          example: "0x"
+        "gasLimit":
+          type: integer
+          example:  3141592
+        "gasUsed":
+          type: integer
+          example: 21662
+        "timestamp":
+          type: integer
+          example: 1429287689
+        "transactions":
+          type: array
+          example: ["0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b"]
+        "uncles": 
+          type: array
+          example: []
+    transaction:
+      type: object
+      description: This is an standard ethereum transaction
+      properties:
+        "hash":
+          type: string
+          example: "0xf498d6f24fb74f942af0f4c211badbcd76b42243ad4bd22251481a8b7891a866"
+        "nonce":
+          type: string
+          example: "31194"
+        "transaction_index":
+          type: string
+          example: "421"
+        "from_address":
+          type: string
+          example: "0x4bae4a1a12f26e26cac5ce7fba5dce201d24c6ef"
+        "to_address":
+          type: string
+          example: "0x0000000000000000000000000000000000001000"
+        "value":
+          type: string
+          example: "0x0000000000000000000000000000000000001000"
+        "gas":
+          type: string
+          example: "9223372036854775807"
+        "gas_price":
+          type: string
+          example: "0"
+        "input":
+          type: string
+          example: "0xf340fa010000000000000000000000004bae4a1a12f26e26cac5ce7fba5dce201d24c6ef"
+        "receipt_cumulative_gas_used":
+          type: string
+          example: null
+        "receipt_gas_used":
+          type: string
+          example: null
+        "receipt_contract_address":
+          type: string
+          example: null
+        "receipt_root":
+          type: string
+          example: null
+        "receipt_status":
+          type: string
+          example: "0"
+        "block_timestamp":
+          type: string
+          example: "0"
+        "block_number":
+          type: string
+          example: "12561639"
+        "block_hash":
+          type: string
+          example: "0xd0a09f2f54c8103800757baba56eed758b00878a1aaf644be2441f9b2f033c2f"
+        "token_transfers":
+          type: array
+          example: []
+        "logs":
+          type: array
+          example: [
+            {      
+                "log_index": "1387",
+                "transaction_hash": "0xf498d6f24fb74f942af0f4c211badbcd76b42243ad4bd22251481a8b7891a866",
+                "transaction_index": "421",
+                "address": "0x0000000000000000000000000000000000001000",
+                "data": "0x0000000000000000000000000000000000000000000000000490d4648089fa5b",
+                "topic0": "0x93a090ecc682c002995fad3c85b30c5651d7fd29b0be5da9d784a3302aedc055",
+                "topic1": "0x0000000000000000000000004bae4a1a12f26e26cac5ce7fba5dce201d24c6ef",
+                "topic2": null,
+                "topic3": null,
+                "block_timestamp": "2021-11-11T15:32:17.000Z",
+                "block_number": "12561639",
+                "block_hash": "0xd0a09f2f54c8103800757baba56eed758b00878a1aaf644be2441f9b2f033c2f"
+            }
+          ]
+    metrics:
+      type: object
+      description: This is an standard ethereum metric.
+      properties:
+        "status":
+          type: integer
+          format: int64
+          example: 200
+        "title":
+          type: string
+          example: "OK"
+        "description":
+          type: string
+          example: "Successful request"
+        "payload":
+          type: object
+          example: {
+            "algorithm": "Ethash", #The mining algorithm used to establish cryptographic proofs for the components of a block
+            "blockchainId": "1c9c969065fcd1cf", # The unique id of the blockchain
+            "consensus": "PoW", # Short name for the consensus mechanism used. Example: PoW - Proof of Work
+            "name": "Ethereum", # The human friendly name of the blockchain
+            "network": "Mainnet", # The classification of the blockchain, denoting how it is used.
+            "sizeTotal": 252047415438, # The total size of disk used by the blockchain data
+            "slug": "ethereum-mainnet" # A short name used for human friendly access of blockchain filtering
+           }
+        

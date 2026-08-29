@@ -1,0 +1,318 @@
+{
+    "info": {
+        "_postman_id": "15bca249-b7f8-4ddb-b184-d2a93ebb4482",
+        "name": "Blockchain API",
+        "description": "Ethereum standars.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "getBlock",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "b15d734b-a33a-4fad-b555-621ae3f09244",
+                        "exec": [
+                            "pm.test(\"Status code is 200\", function () {\r",
+                            "    pm.response.to.have.status(200);\r",
+                            "});\r",
+                            "\r",
+                            "pm.test(\"response must be valid and have a body\", function () {\r",
+                            "     \r",
+                            "     pm.response.to.be.ok; \r",
+                            "     pm.response.to.be.withBody;\r",
+                            "     pm.response.to.be.json; \r",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "id": "de205ecf-0ff3-4faa-885b-9ca1fe1f9664",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "auth": {
+                    "type": "noauth"
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{blockchainUrl}}/blocks/:identifier?logs=true&transactions=true",
+                    "host": [
+                        "{{blockchainUrl}}"
+                    ],
+                    "path": [
+                        "blocks",
+                        ":identifier"
+                    ],
+                    "query": [
+                        {
+                            "key": "logs",
+                            "value": "true",
+                            "description": "(Required) "
+                        },
+                        {
+                            "key": "transactions",
+                            "value": "true",
+                            "description": "(Required) The returned block will contain all transactions as objects."
+                        }
+                    ],
+                    "variable": [
+                        {
+                            "id": "1c08206f-d6b8-46f9-a1c1-ddbfbbeebc7c",
+                            "key": "identifier",
+                            "value": "67306172",
+                            "description": "(Required) Block Number or block hash"
+                        }
+                    ]
+                },
+                "description": "Returns a block matching the block number or block hash."
+            },
+            "response": [
+                {
+                    "id": "ac541fcb-2a87-4a6a-b69b-46e41f9583b3",
+                    "name": "An object containing block info.",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{blockchainUrl}}/blocks/12489532?logs=true&transactions=true",
+                            "host": [
+                                "{{blockchainUrl}}"
+                            ],
+                            "path": [
+                                "blocks",
+                                "12489532"
+                            ],
+                            "query": [
+                                {
+                                    "key": "logs",
+                                    "value": "true"
+                                },
+                                {
+                                    "key": "transactions",
+                                    "value": "true"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "disabled": false,
+                            "description": "A link to the next page of responses",
+                            "key": "x-next",
+                            "value": "ad ipsum eu dolor"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n \"number\": 3,\n \"hash\": \"0xef95f2f1ed3ca60b048b4bf67cde2195961e0bba6f70bcbea9a2c4e133e34b46\",\n \"parentHash\": \"0x2302e1c0b972d00932deb5dab9eb2982f570597d9d42504c05d9c2147eaf9c88\",\n \"nonce\": \"0xfb6e1a62d119228b\",\n \"sha3Uncles\": \"0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347\",\n \"logsBloom\": \"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\n \"transactionsRoot\": \"0x3a1b03875115b79539e5bd33fb00d8f7b7cd61929d5a3c574f507b8acf415bee\",\n \"stateRoot\": \"0xf1133199d44695dfa8fd1bcfe424d82854b5cebef75bddd7e40ea94cda515bcb\",\n \"miner\": \"0x8888f1f195afa192cfee860698584c030f4c9db1\",\n \"difficulty\": \"21345678965432\",\n \"totalDifficulty\": \"324567845321\",\n \"size\": 616,\n \"extraData\": \"0x\",\n \"gasLimit\": 3141592,\n \"gasUsed\": 21662,\n \"timestamp\": 1429287689,\n \"transactions\": [\"0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8b\"],\n \"uncles\": []\n}"
+                }
+            ]
+        },
+        {
+            "name": "Get transaction matching hash number",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "24d198b0-7964-498d-b987-0fe2a82810b3",
+                        "exec": [
+                            "pm.test(\"Status code is 200\", function () {\r",
+                            "    pm.response.to.have.status(200);\r",
+                            "});\r",
+                            "\r",
+                            "pm.test(\"response must be valid and have a body\", function () {\r",
+                            "     \r",
+                            "     pm.response.to.be.ok; \r",
+                            "     pm.response.to.be.withBody;\r",
+                            "     pm.response.to.be.json; \r",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "id": "0763627e-6a5a-478e-889a-227d85374bbe",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "auth": {
+                    "type": "noauth"
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{blockchainUrl}}/transactions/:hash",
+                    "host": [
+                        "{{blockchainUrl}}"
+                    ],
+                    "path": [
+                        "transactions",
+                        ":hash"
+                    ],
+                    "variable": [
+                        {
+                            "key": "hash",
+                            "value": "0xf498d6f24fb74f942af0f4c211badbcd76b42243ad4bd22251481a8b7891a866"
+                        }
+                    ]
+                },
+                "description": "Retrieves transaction information by introducing hash number."
+            },
+            "response": [
+                {
+                    "id": "46ea366b-e235-4f17-85e1-66abd2d62c8b",
+                    "name": "An object with transaction information",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{blockchainUrl}}/transactions/0xf498d6f24fb74f942af0f4c211badbcd76b42243ad4bd22251481a8b7891a866",
+                            "host": [
+                                "{{blockchainUrl}}"
+                            ],
+                            "path": [
+                                "transactions",
+                                "0xf498d6f24fb74f942af0f4c211badbcd76b42243ad4bd22251481a8b7891a866"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "disabled": false,
+                            "description": "A link to the next page of responses",
+                            "key": "x-next",
+                            "value": "ad ipsum eu dolor"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n \"hash\": \"0xf498d6f24fb74f942af0f4c211badbcd76b42243ad4bd22251481a8b7891a866\",\n \"nonce\": \"31194\",\n \"transaction_index\": \"421\",\n \"from_address\": \"0x4bae4a1a12f26e26cac5ce7fba5dce201d24c6ef\",\n \"to_address\": \"0x0000000000000000000000000000000000001000\",\n \"value\": \"0x0000000000000000000000000000000000001000\",\n \"gas\": \"9223372036854775807\",\n \"gas_price\": \"0\",\n \"input\": \"0xf340fa010000000000000000000000004bae4a1a12f26e26cac5ce7fba5dce201d24c6ef\",\n \"receipt_cumulative_gas_used\": \"aliquip amet\",\n \"receipt_gas_used\": \"aliqua\",\n \"receipt_contract_address\": \"Lo\",\n \"receipt_root\": \"eiusmod irure\",\n \"receipt_status\": \"0\",\n \"block_timestamp\": \"0\",\n \"block_number\": \"12561639\",\n \"block_hash\": \"0xd0a09f2f54c8103800757baba56eed758b00878a1aaf644be2441f9b2f033c2f\",\n \"logs\": [\n  {\n   \"log_index\": \"1387\",\n   \"transaction_hash\": \"0xf498d6f24fb74f942af0f4c211badbcd76b42243ad4bd22251481a8b7891a866\",\n   \"transaction_index\": \"421\",\n   \"address\": \"0x0000000000000000000000000000000000001000\",\n   \"data\": \"0x0000000000000000000000000000000000000000000000000490d4648089fa5b\",\n   \"topic0\": \"0x93a090ecc682c002995fad3c85b30c5651d7fd29b0be5da9d784a3302aedc055\",\n   \"topic1\": \"0x0000000000000000000000004bae4a1a12f26e26cac5ce7fba5dce201d24c6ef\",\n   \"topic2\": null,\n   \"topic3\": null,\n   \"block_timestamp\": \"2021-11-11T15:32:17.000Z\",\n   \"block_number\": \"12561639\",\n   \"block_hash\": \"0xd0a09f2f54c8103800757baba56eed758b00878a1aaf644be2441f9b2f033c2f\"\n  }\n ]\n}"
+                }
+            ]
+        },
+        {
+            "name": "Get metrics",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "871f1dfa-8b0b-40a5-af1c-46399e9db57b",
+                        "exec": [
+                            "pm.test(\"Status code is 200\", function () {\r",
+                            "    pm.response.to.have.status(200);\r",
+                            "});\r",
+                            "\r",
+                            "pm.test(\"response must be valid and have a body\", function () {\r",
+                            "     \r",
+                            "     pm.response.to.be.ok; \r",
+                            "     pm.response.to.be.withBody;\r",
+                            "     pm.response.to.be.json; \r",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "id": "2e30f6ec-9c15-43b8-8ae4-e46d5a1b3896",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "auth": {
+                    "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                    {
+                        "description": "(Required) The id of the blockchain",
+                        "key": "blockchain-id",
+                        "value": "1c9c969065fcd1cf"
+                    }
+                ],
+                "url": {
+                    "raw": "{{blockchainUrl}}/metrics/latest",
+                    "host": [
+                        "{{blockchainUrl}}"
+                    ],
+                    "path": [
+                        "metrics",
+                        "latest"
+                    ]
+                },
+                "description": "Get metrics for a specific blockchain."
+            },
+            "response": [
+                {
+                    "id": "40d6962c-1b5a-4264-a29d-22031df03e32",
+                    "name": "Object containig a blockchain latest metrics",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "description": "(Required) The id of the blockchain",
+                                "key": "blockchain-id",
+                                "value": "1c9c969065fcd1cf"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{blockchainUrl}}/metrics/latest",
+                            "host": [
+                                "{{blockchainUrl}}"
+                            ],
+                            "path": [
+                                "metrics",
+                                "latest"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "disabled": false,
+                            "description": "A link to the next page of responses",
+                            "key": "x-next",
+                            "value": "ad ipsum eu dolor"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n \"status\": 200,\n \"title\": \"OK\",\n \"description\": \"Successful request\",\n \"payload\": {\n  \"algorithm\": \"Ethash\",\n  \"blockchainId\": \"1c9c969065fcd1cf\",\n  \"consensus\": \"PoW\",\n  \"name\": \"Ethereum\",\n  \"network\": \"Mainnet\",\n  \"sizeTotal\": 252047415438,\n  \"slug\": \"ethereum-mainnet\"\n }\n}"
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "id": "c5259650-0852-437c-8a24-59584203e129",
+            "key": "baseUrl",
+            "value": "localhost:3000",
+            "type": "string"
+        }
+    ]
+}

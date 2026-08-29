@@ -1,0 +1,16 @@
+{
+  "name": "version",
+  "version": "1.0.0",
+  "description": "version",
+  "main": "get.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk synth"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.1.3"
+  }
+}

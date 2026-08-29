@@ -1,0 +1,23 @@
+{
+  "name": "bitqueryIntegration",
+  "version": "1.0.0",
+  "description": "version",
+  "main": "get.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk synth"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node-fetch": "^2.5.7",
+    "agentkeepalive": "^4.1.4",
+    "aws-sdk": "^2.884.0",
+    "axios": "^0.21.1",
+    "graphql": "^15.5.0",
+    "graphql-tag": "^2.11.0",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {}
+}

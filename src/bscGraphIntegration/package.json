@@ -1,0 +1,19 @@
+{
+  "name": "bscGraphIntegration",
+  "version": "1.0.0",
+  "description": "version",
+  "main": "get.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk synth"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "graphql": "^15.5.0",
+    "graphql-tag": "^2.11.0"
+  },
+  "devDependencies": {}
+}

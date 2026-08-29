@@ -1,0 +1,17 @@
+{
+  "name": "euler-api",
+  "version": "1.0.0",
+  "description": "Euler API",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk synth"
+  },
+  "author": {
+    "name": "mfcattafesta",
+    "url": "https://euler-api.com"
+  },
+  "license": "MIT",
+  "devDependencies": {}
+}

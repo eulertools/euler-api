@@ -1,0 +1,24 @@
+*.js
+!jest.config.js
+node_modules
+authCache
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+# Parcel default cache directory
+.parcel-cache
+.env
+config/env.ts
+
+src/**/node_modules
+src/*/utils
+**/*.d.ts
+TODO.txt
+
+# Mac OS file
+.DS_Store
+
+# template.yaml
+template.yaml

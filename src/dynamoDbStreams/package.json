@@ -1,0 +1,17 @@
+{
+  "name": "DynamoDbStream",
+  "version": "1.0.0",
+  "description": "version",
+  "main": "get.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk synth"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.4.0",
+    "typescript": "^4.1.3"
+  }
+}

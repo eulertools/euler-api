@@ -1,0 +1,123 @@
+HK: [module]~[action]~[params...]
+RK: [page-number]
+
+#### BEGIN ACCOUNTS ####
+
+account~balance~address
+https://api.bscscan.com/api?module=account&action=balance&address=0x0000000000000000000000000000000000001004&tag=latest&apikey=YourApiKeyToken
+
+account~balancemulti~address,address,address NOT CACHED YET
+https://api.bscscan.com/api?module=account&action=balancemulti&address=0x0000000000000000000000000000000000001004,0x0000000000000000000000000000000000001000,0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c&tag=latest&apikey=YourApiKeyToken
+
+account~txlist~address~startblock~endblock~page~offset 
+https://api.bscscan.com/api?module=account&action=txlist&address=0x0000000000000000000000000000000000001004&startblock=1&endblock=99999999&sort=asc&apikey=YourApiKeyToken
+https://api.bscscan.com/api?module=account&action=txlist&address=0x0000000000000000000000000000000000001004&startblock=1&endblock=99999999&page=1&offset=10&sort=asc&apikey=YourApiKeyToken
+
+account~txlistinternal~address~startblock~endblock
+https://api.bscscan.com/api?module=account&action=txlistinternal&address=0x0000000000000000000000000000000000001004&startblock=0&endblock=2702578&sort=asc&apikey=YourApiKeyToken
+
+account~txlistinternal~txhash
+https://api.bscscan.com/api?module=account&action=txlistinternal&txhash=0x4d74a6fc84d57f18b8e1dfa07ee517c4feb296d16a8353ee41adc03669982028&apikey=YourApiKeyToken
+
+account~txlistinternal~address~startblock~endblock~page~offset
+https://api.bscscan.com/api?module=account&action=txlistinternal&startblock=0&endblock=2702578&page=1&offset=10&sort=asc&apikey=YourApiKeyToken
+
+account~tokentx~address~startblock~endblock
+https://api.bscscan.com/api?module=account&action=tokentx&address=0x7bb89460599dbf32ee3aa50798bbceae2a5f7f6a&startblock=0&endblock=2500000&sort=asc&apikey=YourApiKeyToken
+
+account~tokentx~contractaddress~page~offset
+https://api.bscscan.com/api?module=account&action=tokentx&contractaddress=0xc9849e6fdb743d08faee3e34dd2d1bc69ea11a51&page=1&offset=100&sort=asc&apikey=YourApiKeyToken
+
+account~tokentx~contractaddress~address~page~offset
+https://api.bscscan.com/api?module=account&action=tokentx&contractaddress=0xc9849e6fdb743d08faee3e34dd2d1bc69ea11a51&address=0x7bb89460599dbf32ee3aa50798bbceae2a5f7f6a&page=1&offset=100&sort=asc&apikey=YourApiKeyToken
+
+account~tokennfttx~address~page~offset~startblock~endblock
+https://api.bscscan.com/api?module=account&action=tokennfttx&address=0xcd4ee0a77e09afa8d5a6518f7cf8539bef684e6c&startblock=0&endblock=999999999&sort=asc
+
+account~tokennfttx~contractaddress~page~offset
+https://api.bscscan.com/api?module=account&action=tokennfttx&contractaddress=0x5e74094cd416f55179dbd0e45b1a8ed030e396a1&page=1&offset=100&sort=asc
+
+account~tokennfttx~contractaddress~address~page~offset
+https://api.bscscan.com/api?module=account&action=tokennfttx&contractaddress=0x5e74094cd416f55179dbd0e45b1a8ed030e396a1&address=0xcd4ee0a77e09afa8d5a6518f7cf8539bef684e6c&page=1&offset=100&sort=asc
+
+account~getminedblocks~address
+https://api.bscscan.com/api?module=account&action=getminedblocks&address=0x78f3adfc719c99674c072166708589033e2d9afe&blocktype=blocks&apikey=YourApiKeyToken
+
+account~getminedblocks~address~page~offset
+https://api.bscscan.com/api?module=account&action=getminedblocks&address=0x78f3adfc719c99674c072166708589033e2d9afe&blocktype=blocks&page=1&offset=10&apikey=YourApiKeyToken
+
+#### END ACCOUNTS ####
+
+#### BEGIN CONTRACTS ####
+
+contract~getabi~address
+https://api.bscscan.com/api?module=contract&action=getabi&address=0x0000000000000000000000000000000000001004&apikey=YourApiKeyToken
+
+contract~getsourcecode~address
+https://api.bscscan.com/api?module=contract&action=getsourcecode&address=0x0000000000000000000000000000000000001004&apikey=YourApiKeyToken
+
+#### END CONTRACTS ####
+
+#### BEGIN TRANSACTIONS ####
+
+transaction~gettxreceiptstatus~txhash
+https://api.bscscan.com/api?module=transaction&action=gettxreceiptstatus&txhash=0xe9975702518c79caf81d5da65dea689dcac701fcdd063f848d4f03c85392fd00&apikey=YourApiKeyToken
+
+#### END TRANSACTIONS ####
+
+#### BEGIN BLOCKS ####
+
+block~getblockreward~blockno
+https://api.bscscan.com/api?module=block&action=getblockreward&blockno=2150000&apikey=YourApiKeyToken
+
+block~getblockcountdown~blockno
+https://api.bscscan.com/api?module=block&action=getblockcountdown&blockno=8000000&apikey=YourApiKeyToken
+
+block~getblocknobytime~timestamp
+https://api.bscscan.com/api?module=block&action=getblocknobytime&timestamp=1601510400&closest=before&apikey=YourApiKeyToken
+
+#### END BLOCKS ####
+
+#### BEGIN GETH ####
+
+proxy~eth_blockNumber
+https://api.bscscan.com/api?module=proxy&action=eth_blockNumber&apikey=YourApiKeyToken
+
+proxy~eth_getBlockByNumber
+https://api.bscscan.com/api?module=proxy&action=eth_getBlockByNumber&tag=0x3d0900&boolean=true&apikey=YourApiKeyToken
+
+proxy~eth_getBlockTransactionCountByNumber~tag
+https://api.bscscan.com/api?module=proxy&action=eth_getBlockTransactionCountByNumber&tag=0x3d0900&apikey=YourApiKeyToken
+
+proxy~eth_getTransactionByHash~txhash
+https://api.bscscan.com/api?module=proxy&action=eth_getTransactionByHash&txhash=0xa0f2e87dfb75e3ebb8b23eff7b490442ff74cf8921eb61217dfc48918fe4020f&apikey=YourApiKeyToken
+
+proxy~eth_getTransactionByBlockNumberAndIndex~tag
+https://api.bscscan.com/api?module=proxy&action=eth_getTransactionByBlockNumberAndIndex&tag=0x3d0900&index=0x0&apikey=YourApiKeyToken
+
+proxy~eth_getTransactionCount~address
+https://api.bscscan.com/api?module=proxy&action=eth_getTransactionCount&address=0x4430b3230294D12c6AB2aAC5C2cd68E80B16b581&tag=latest&apikey=YourApiKeyToken
+
+proxy~eth_getTransactionReceipt~txhash
+https://api.bscscan.com/api?module=proxy&action=eth_getTransactionReceipt&txhash=0xa0f2e87dfb75e3ebb8b23eff7b490442ff74cf8921eb61217dfc48918fe4020f&apikey=YourApiKeyToken
+
+proxy~eth_getCode~address
+https://api.bscscan.com/api?module=proxy&action=eth_getCode&address=0x0000000000000000000000000000000000001000&tag=latest&apikey=YourApiKeyToken
+
+proxy~eth_gasPrice
+https://api.bscscan.com/api?module=proxy&action=eth_gasPrice&apikey=YourApiKeyToken
+
+#### END GETH ####
+
+#### BEGIN TOKENS ####
+
+stats~tokensupply~contractaddress
+https://api.bscscan.com/api?module=stats&action=tokensupply&contractaddress=0xe9e7cea3dedca5984780bafc599bd69add087d56&apikey=YourApiKeyToken
+
+stats~tokenCsupply~contractaddress
+https://api.bscscan.com/api?module=stats&action=tokenCsupply&contractaddress=0xe9e7cea3dedca5984780bafc599bd69add087d56&apikey=YourApiKeyToken
+
+account~tokenbalance~contractaddress
+https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=0xe9e7cea3dedca5984780bafc599bd69add087d56&address=0x89e73303049ee32919903c09e8de5629b84f59eb&tag=latest&apikey=YourApiKeyToken
+
+#### END TOKENS ####
